@@ -7,6 +7,7 @@ public class Bank {
     private List<Transaction> history;
     private List<TransactionCommand> transactionHistory;
 
+
     public Bank(String name) {
         this.name = name;
         this.accounts = new ArrayList<>();
@@ -30,9 +31,11 @@ public class Bank {
         toAccount.addTransaction(transaction);
         this.addTransaction(transaction);
     }
-    
+
     public void executeTransaction(TransactionCommand transactionCommand) {
         transactionCommand.execute();
         transactionHistory.add(transactionCommand);
     }
+
+   
 }

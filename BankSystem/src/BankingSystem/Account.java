@@ -7,6 +7,7 @@ public abstract class Account {
     protected Date openingDate;
     protected double balance;
     protected List<Transaction> history;
+    protected InterestMechanism interestMechanism;
 
     public Account(String id, String owner, double initialBalance) {
         this.id = id;
@@ -14,6 +15,7 @@ public abstract class Account {
         this.balance = initialBalance;
         this.history = new ArrayList<>();
         this.openingDate = new Date();
+        this.interestMechanism = interestMechanism;
     }
 
     public String getId() {
@@ -40,6 +42,12 @@ public abstract class Account {
         history.add(transaction);
     }
 
-    public abstract void calculateInterest();
+    public void calculateInterest() {
+        balance += interestMechanism.calculateInterest(balance);
+    }
+
+    public void setInterestMechanism(InterestMechanism interestMechanism) {
+        this.interestMechanism = interestMechanism;
+    }
 }
 
